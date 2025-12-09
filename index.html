@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV - Cesar Moreno Perez</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-blue: #2563eb;
+            --dark-bg: #0f172a;
+            --card-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            background-color: #f8fafc;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            color: #334155;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            color: white;
+            padding: 4rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-bg-icon {
+            position: absolute;
+            top: -20px;
+            right: 5%;
+            font-size: 20rem;
+            opacity: 0.05;
+            color: white;
+            transform: rotate(-15deg);
+            pointer-events: none;
+        }
+
+        .profile-container {
+            position: relative;
+            width: 180px;
+            height: 180px;
+            margin: 0 auto;
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .profile-container:hover .profile-img {
+            transform: scale(1.05);
+        }
+
+        .status-dot {
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            width: 20px;
+            height: 20px;
+            background-color: #22c55e;
+            border: 3px solid #1e293b;
+            border-radius: 50%;
+        }
+
+        .contact-pill {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            padding: 0.5rem 1rem;
+            color: #e2e8f0;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-pill:hover {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Cards */
+        .custom-card {
+            background: white;
+            border: none;
+            border-radius: 1rem;
+            box-shadow: var(--card-shadow);
+            margin-bottom: 2rem;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        
+        .custom-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-header-line {
+            height: 4px;
+            width: 100%;
+        }
+
+        .card-body {
+            padding: 1.5rem;
+        }
+
+        .section-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Skills */
+        .skill-item {
+            margin-bottom: 1rem;
+        }
+
+        .progress {
+            height: 0.6rem;
+            background-color: #e2e8f0;
+            border-radius: 1rem;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            background-color: var(--primary-blue);
+            width: 0; /* Starts at 0 for animation */
+            transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Experience Timeline */
+        .timeline-item {
+            position: relative;
+            padding-left: 1.5rem;
+            border-left: 2px solid #e2e8f0;
+            padding-bottom: 2rem;
+        }
+
+        .timeline-item:last-child {
+            border-left: 2px solid transparent;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -6px;
+            top: 0;
+            width: 10px;
+            height: 10px;
+            background-color: var(--primary-blue);
+            border-radius: 50%;
+            box-shadow: 0 0 0 4px #eff6ff;
+        }
+
+        .badge-period {
+            background-color: #eff6ff;
+            color: var(--primary-blue);
+            font-weight: 600;
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+        }
+
+        /* Competencies Tags */
+        .tag {
+            display: inline-block;
+            background-color: #f3e8ff;
+            color: #7e22ce;
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin: 0.25rem;
+            border: 1px solid #e9d5ff;
+        }
+
+        /* Print Styles */
+        @media print {
+            .btn-print { display: none !important; }
+            .hero-section { 
+                background: #1e293b !important; 
+                -webkit-print-color-adjust: exact; 
+                padding: 2rem 0;
+            }
+            .hero-bg-icon { display: none; }
+            body { background-color: white; }
+            .custom-card { box-shadow: none; border: 1px solid #ddd; break-inside: avoid; }
+            .progress-bar { -webkit-print-color-adjust: exact; }
+            .contact-pill { color: #333; border: 1px solid #ccc; background: transparent; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header / Hero -->
+    <header class="hero-section">
+        <i class="fas fa-code hero-bg-icon"></i>
+        <div class="container position-relative z-2">
+            <div class="row align-items-center text-center text-md-start">
+                
+                <!-- Foto -->
+                <div class="col-md-3 mb-4 mb-md-0">
+                    <div class="profile-container">
+                        <img src="imagen/cesar.jpg" 
+						 alt="Cesar Moreno Perez" 
+						 class="profile-img">
+                        <div class="status-dot" title="Disponible"></div>
+                    </div>
+                </div>
+
+                <!-- Info -->
+                <div class="col-md-9">
+                    <h1 class="display-4 fw-bold mb-2">CESAR MORENO PEREZ</h1>
+                    <h2 class="h4 text-info mb-4"><i class="fas fa-terminal me-2"></i>Project Manager / Líder de Proyectos</h2>
+                    
+                    <div class="d-flex flex-wrap justify-content-center justify-content-md-start gap-3 mb-4">
+                        <a href="mailto:consultordfsr@gmail.com" class="contact-pill">
+                            <i class="fas fa-envelope"></i> consultordfsr@gmail.com
+                        </a>
+                        <span class="contact-pill">
+                            <i class="fas fa-phone"></i> (55) 1836-5312
+                        </span>
+                        <span class="contact-pill">
+                            <i class="fas fa-map-marker-alt"></i> CDMX, Álvaro Obregón
+                        </span>
+                    </div>
+
+                    <div class="bg-white bg-opacity-10 p-3 rounded text-light border border-white border-opacity-10">
+                        <p class="mb-0" style="font-size: 1.05rem; line-height: 1.6;">
+                            Cuento con amplia experiencia en la gestión y desarrollo de proyectos de TI, abarcando desde el
+							levantamiento de requerimientos hasta la entrega final. He desempeñado roles como Analista,
+							Programador, Administrador de Bases de Datos, Líder de Proyecto y Project Manager, gestionando tanto
+							incidentes como equipos de trabajo. Mi trayectoria abarca diversos sectores, incluyendo
+							Telecomunicaciones, Salud, Crédito y Cobranza, Gobierno y Bancario. Poseo sólidos conocimientos en
+							metodologías de gestión de proyecto y desarrollo de software como Waterfall, Scrum y Kanban,
+							adaptándome a las necesidades específicas de cada proyecto. Me enfoco en entregar soluciones de
+							alta calidad dentro de los plazos y presupuestos establecidos, fomentando un ambiente de trabajo
+							colaborativo y eficiente.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Botón Imprimir (visible solo en pantalla) -->
+            <div class="position-absolute top-0 end-0 mt-3 me-3 d-none d-lg-block">
+                <button onclick="window.print()" class="btn btn-primary btn-print shadow-lg">
+                    <i class="fas fa-download me-2"></i>Descargar PDF
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container mt-n5 pb-5" style="margin-top: -30px; position: relative; z-index: 10;">
+        <div class="row">
+            
+            <!-- Columna Izquierda (Skills) -->
+            <div class="col-lg-4">
+                
+                <!-- Habilidades Técnicas -->
+                <div class="custom-card">
+                    <div class="card-header-line bg-primary"></div>
+                    <div class="card-body">
+                        <h3 class="section-title"><i class="fas fa-laptop-code text-primary"></i> Habilidades Técnicas</h3>
+                        
+                        <div class="mb-4">
+                            <h6 class="text-uppercase text-muted fw-bold small mb-3">Lenguajes</h6>
+                            <!-- Skill Item -->
+                            <div class="skill-item">
+                                <div class="d-flex justify-content-between mb-1">
+                                    <span class="fw-bold small">C#</span>
+                                    <span class="small">90%</span>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" data-width="90"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="d-flex justify-content-between mb-1">
+                                    <span class="fw-bold small">VB 6 / ASP 3.0</span>
+                                    <span class="small">85%</span>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" data-width="85"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="d-flex justify-content-between mb-1">
+                                    <span class="fw-bold small">Javascript</span>
+                                    <span class="small">80%</span>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" data-width="80"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="d-flex justify-content-between mb-1">
+                                    <span class="fw-bold small">Python</span>
+                                    <span class="small">75%</span>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" data-width="75"></div>
+                                </div>
+                            </div>
+							
+							 <div class="skill-item">
+                                <div class="d-flex justify-content-between mb-1">
+                                    <span class="fw-bold small">Bootstrap</span>
+                                    <span class="small">65%</span>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" data-width="70"></div>
+                                </div>
+                            </div>
+							
+							 <div class="skill-item">
+                                <div class="d-flex justify-content-between mb-1">
+                                    <span class="fw-bold small">Shell Bash</span>
+                                    <span class="small">85%</span>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" data-width="75"></div>
+                                </div>
+                            </div>
+							
+								 <div class="skill-item">
+                                <div class="d-flex justify-content-between mb-1">
+                                    <span class="fw-bold small">4GL</span>
+                                    <span class="small">85%</span>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" data-width="60"></div>
+                                </div>
+                            </div>
+							
+								 <div class="skill-item">
+                                <div class="d-flex justify-content-between mb-1">
+                                    <span class="fw-bold small">SQR PeopleSoft</span>
+                                    <span class="small">85%</span>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" data-width="70"></div>
+                                </div>
+                            </div>
+							
+								 <div class="skill-item">
+                                <div class="d-flex justify-content-between mb-1">
+                                    <span class="fw-bold small">SSAS</span>
+                                    <span class="small">85%</span>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" data-width="75"></div>
+                                </div>
+                            </div>
+							
+							 <div class="skill-item">
+                                <div class="d-flex justify-content-between mb-1">
+                                    <span class="fw-bold small">SSIS</span>
+                                    <span class="small">85%</span>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" data-width="70"></div>
+                                </div>
+                            </div>
+							
+							  <div class="skill-item">
+                                <div class="d-flex justify-content-between mb-1">
+                                    <span class="fw-bold small">SSRS</span>
+                                    <span class="small">85%</span>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" data-width="80"></div>
+                                </div>
+                            </div>
+							
+							  <div class="skill-item">
+                                <div class="d-flex justify-content-between mb-1">
+                                    <span class="fw-bold small">PowerShell</span>
+                                    <span class="small">85%</span>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" data-width="70"></div>
+                                </div>
+                            </div>
+							
+							  <div class="skill-item">
+                                <div class="d-flex justify-content-between mb-1">
+                                    <span class="fw-bold small">Pro C</span>
+                                    <span class="small">80%</span>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" data-width="70"></div>
+                                </div>
+                            </div>
+							
+							 <div class="skill-item">
+                                <div class="d-flex justify-content-between mb-1">
+                                    <span class="fw-bold small">ODI 12C</span>
+                                    <span class="small">70%</span>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" data-width="70"></div>
+                                </div>
+                            </div>
+							
+							
+							
+                        </div>
+
+                        <div class="mb-4 pt-3 border-top">
+                            <h6 class="text-uppercase text-muted fw-bold small mb-3">Base de Datos</h6>
+                            <div class="skill-item">
+                                <div class="d-flex justify-content-between mb-1">
+                                    <span class="fw-bold small">Informix / Sybase</span>
+                                    <span class="small">90%</span>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar bg-indigo" style="background-color: #6366f1;" role="progressbar" data-width="90"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="d-flex justify-content-between mb-1">
+                                    <span class="fw-bold small">DB2</span>
+                                    <span class="small">80%</span>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar bg-indigo" style="background-color: #6366f1;" role="progressbar" data-width="85"></div>
+                                </div>
+                            </div>
+							
+							
+							  <div class="skill-item">
+                                <div class="d-flex justify-content-between mb-1">
+                                    <span class="fw-bold small">SQL Server</span>
+                                    <span class="small">85%</span>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar bg-indigo" style="background-color: #6366f1;" role="progressbar" data-width="85"></div>
+                                </div>
+                            </div>
+							
+							 <div class="skill-item">
+                                <div class="d-flex justify-content-between mb-1">
+                                    <span class="fw-bold small">INFORMIX</span>
+                                    <span class="small">80%</span>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar bg-indigo" style="background-color: #6366f1;" role="progressbar" data-width="85"></div>
+                                </div>
+                            </div>
+							
+									 <div class="skill-item">
+                                <div class="d-flex justify-content-between mb-1">
+                                    <span class="fw-bold small">PLSQL ORACLE</span>
+                                    <span class="small">85%</span>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar bg-indigo" style="background-color: #6366f1;" role="progressbar" data-width="85"></div>
+                                </div>
+                            </div>
+							
+							 <div class="skill-item">
+                                <div class="d-flex justify-content-between mb-1">
+                                    <span class="fw-bold small">MYSQL</span>
+                                    <span class="small">60%</span>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar bg-indigo" style="background-color: #6366f1;" role="progressbar" data-width="85"></div>
+                                </div>
+                            </div>
+							
+							
+                        </div>
+
+                        <div class="pt-3 border-top">
+                            <h6 class="text-uppercase text-muted fw-bold small mb-3">Metodologías</h6>
+                            <div class="skill-item">
+                                <div class="d-flex justify-content-between mb-1">
+                                    <span class="fw-bold small">Kanban</span>
+                                    <span class="small">90%</span>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar bg-success" role="progressbar" data-width="90"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="d-flex justify-content-between mb-1">
+                                    <span class="fw-bold small">PMP / Scrum</span>
+                                    <span class="small">85%</span>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar bg-success" role="progressbar" data-width="85"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Herramientas -->
+                <div class="custom-card">
+                    <div class="card-header-line bg-purple" style="background-color: #a855f7;"></div>
+                    <div class="card-body">
+                        <h3 class="section-title"><i class="fas fa-layer-group" style="color: #a855f7;"></i> Herramientas</h3>
+                        <div>
+                            <span class="tag">Jira</span>
+                            <span class="tag">Service Now</span>
+                            <span class="tag">Bitbucket</span>
+                            <span class="tag">Git / GitHub</span>
+                            <span class="tag">Checkmarx</span>
+                            <span class="tag">Project</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Educación -->
+                <div class="custom-card">
+                    <div class="card-header-line bg-warning"></div>
+                    <div class="card-body">
+                        <h3 class="section-title"><i class="fas fa-graduation-cap text-warning"></i> Educación</h3>
+                        <div>
+                            <h5 class="fw-bold mb-1">Instituto Politécnico Nacional</h5>
+                            <p class="text-primary fw-semibold mb-1">Licenciado en Ciencias de la Informática</p>
+                            <small class="text-muted">Cédula 4707205</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Certificaciones -->
+                <div class="custom-card">
+                    <div class="card-header-line bg-info"></div>
+                    <div class="card-body">
+                        <h3 class="section-title"><i class="fas fa-certificate text-info"></i> Certificaciones</h3>
+                        <ul class="list-unstyled mb-0">
+                            <li class="mb-2"><i class="fas fa-check-circle text-info me-2"></i>Scrum Foundation</li>
+                            <li class="mb-2"><i class="fas fa-check-circle text-info me-2"></i>Lean Six Sigma White Belt</li>
+                            <li><i class="fas fa-check-circle text-info me-2"></i>Business Intelligence Foundation</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Columna Derecha (Experiencia) -->
+            <div class="col-lg-8">
+                <div class="mb-4">		
+					 <br>
+					 <br> 
+                    <h2 class="fw-bold text-dark"><i class="fas fa-briefcase text-primary me-2"></i>Experiencia Profesional</h2>
+                </div>
+
+                <!-- Experiencia Items -->
+                <div class="custom-card">
+                    <div class="card-body">
+                        
+                        <!-- Item 1 -->
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="d-flex flex-column flex-md-row justify-content-between mb-2">
+                                <div>
+                                    <h4 class="fw-bold mb-0">Project Manager / Líder de Proyectos</h4>
+                                    <h5 class="text-muted mb-0">TATA CONSULTANCY SERVICES</h5>
+                                </div>
+                                <div class="mt-2 mt-md-0">
+                                    <span class="badge-period">17/10/2012 - Actual</span>
+                                </div>
+                            </div>
+                            <p class="fst-italic text-secondary border-start border-4 border-light ps-3 mb-3">
+                                Responsable de la Gestión Integral de Proyectos y Procesos para Cumplimiento de Estándares CMMI Nivel 3.
+                            </p>
+                            <ul class="text-muted small">
+                                <li class="mb-1">Responsable de la Gestión Integral de Proyectos y Procesos para Cumplimiento de Estándares CMMI Nivel 3.</li>
+                                <li class="mb-1">Implementación y gestión de procesos del Application Lifecycle Management (ALM),asegurando trazabilidad mediante matrices .</li>
+                                <li class="mb-1">Gestión y administración de herramientas especializadas para el soporte de proyectos y operación:
+                                                  Monitor, Harvest, Jira, PPMC, Quality Center, Eroom, y ServiceNow.</li>
+                                <li>Desarrollo y optimización de procesos de inteligencia de negocios mediante herramientas
+								como SSRS, SSIS, y SQR para PeopleSoft.</li>
+								<li>Uso de herramientas colaborativas y de control de versiones, como Bitbucket,
+								GitHub,Subversion y DImensions para garantizar la calidad y la documentación en los
+								entregables.</li>
+								<li>Uso de herramientas colaborativas y de control de versiones, como Bitbucket, GitHub,
+								Subversion y DImensions para garantizar la calidad y la documentación en los entregables </li>
+								<li>Gestión de sistemas legados del SAT como Administración y soporte de aplicaciones
+								institucionales (SICOSEM, SICA, Rayos Gamma, etc.), enfocadas en procesos tributarios,
+								con atención a incidencias, mejoras evolutivas y continuidad operativa.</li>
+								<li>Coordinación de actividades clave, desde la generación de estimaciones y planes de
+								trabajo hasta la asignación de recursos necesarios para la atención de requerimientos.</li>
+								<li>Elaboración y gestión de documentación técnica y funcional para aprobación de
+								requerimientos (PPMC, Diseño Funcional, Técnico, SMC, etc.).</li>
+								<li>Planificación, ejecución y supervisión de pruebas unitarias, garantizando la calidad en los
+								entregables.</li>
+								<li>Estimación precisa de tiempos y esfuerzos requeridos para proyectos, asegurando
+								cumplimiento de plazos y optimización de recursos.</li>
+								<li>Gestión de incidencias operativas, proporcionando soluciones oportunas para minimizar
+								impactos.</li>
+								<li>Garantía del cumplimiento de acuerdos de nivel de servicio (SLA) en los servicios ofrecidos.</li>
+								<li>Capacitación y entrenamiento al personal para resolver incidencias, fomentando la
+								autonomía y mejora continua en el equipo.</li>
+								<li>Gestión de proyectos End-to-end management en sistemas Currency: Coordinación y
+								seguimiento de iniciativas tecnológicas para plataformas clave del core bancario,
+								incluyendo Cajeros, Ellave, Sucursales, Estados, Cobranza Lite y BackOffice. Enfoque en
+								integración, mejora continua y cumplimiento de objetivos operativos.</li>
+                            </ul>
+                        </div>
+
+                        <!-- Item 2 -->
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="d-flex flex-column flex-md-row justify-content-between mb-2">
+                                <div>
+                                    <h4 class="fw-bold mb-0">Subdirector IT Evaluación</h4>
+                                    <h5 class="text-muted mb-0">IAPA</h5>
+                                </div>
+                                <div class="mt-2 mt-md-0">
+                                    <span class="badge-period">01/03/2010 - 30/09/2012</span>
+                                </div>
+                            </div>
+                            <p class="fst-italic text-secondary border-start border-4 border-light ps-3 mb-3">
+                                Responsable de arquitectura de sistemas y migración de datos.
+                            </p>
+                            <ul class="text-muted small">
+								<li>Responsable de arquitectura del Sistema Tamizaje basado en el Patrón de Diseño en
+								Capas</li>
+								<li>Responsable del la arquitectura del Sistema de Test de evaluación utilizando el Patrón de
+								diseño en Singleton</li>
+								<li>Gestión de Reportes en Report Service</li>
+								<li>A cargo de Diseño Sistema de Repositorio de Cubos Olap en SSIS</li>
+								<li>Responsable de migración de sus Base de datos generados en versión SQL server 2000 a
+								2008</li>
+								<li>Responsable del Desarrollo de Sistema EDAS</li>
+								<li>Responsable de diseño y creación del sistema de control de Centros de atención</li>
+								<li>Responsable del Desarrollo del Sistema de Cáncer de Niños y Adolescentes</li>
+								<li>Gestión de documentación técnica de los procesos y sistemas desarrollos basados en
+								la metodología RUP</li>
+								<li>A cargo de la minería de datos para la carga de cubos</li>
+								<li>Tecnologías: ASP 3.0,ASP.NET,C#, Sql server, Oracle 10G,PLSQL,Business
+								Intelligence(SSRS),(SSIS)</li>
+                            </ul>
+                        </div>
+
+                        <!-- Item 3 -->
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="d-flex flex-column flex-md-row justify-content-between mb-2">
+                                <div>
+                                    <h4 class="fw-bold mb-0">Supervisor IT / Facturación</h4>
+                                    <h5 class="text-muted mb-0">MAXCOM</h5>
+                                </div>
+                                <div class="mt-2 mt-md-0">
+                                    <span class="badge-period">15/11/2007 - 26/02/2010</span>
+                                </div>
+                            </div>
+                            <p class="fst-italic text-secondary border-start border-4 border-light ps-3 mb-3">
+                                Encargado de sistemas de facturación y procesos batch.
+                            </p>
+                            <ul class="text-muted small">
+                               <li>Responsable de generación de Procesos batch en HP-UX</li>
+								 <li>Creación y Diseño del Sistema Cedula de clientes utilizando el Patrón de diseño en
+								Singleton</li>
+								 <li>Creación y Diseño del Sistema Factura Web utilizando el Patrón de diseño en capas</li>
+								 <li>Generación de tablas, Procedimientos almacenados, Trigers, etc. necesarios para el
+								funcionamiento del sistema de Facturación.</li>
+								 <li>Especialista ERP Kenan Arbor</li>
+								 <li>A cargo del ciclo de Facturación.</li>
+								 <li>Creación de Módulos o reportes necesarios desarrollados en .NET.</li>
+								 <li>Encargado de la facturación electrónica</li>
+								 <li>Responsable de la atención a los incidentes relacionados con la facturación electrónica.</li>
+								 <li>Tecnologías: ASP.NET,C#, Sql server, Oracle 10G,PLSQL,HP-UX,Batch Shell, ERP Kenan
+								Arbor, Business Intelligence(SSRS),(SSIS)</li>
+                            </ul>
+                        </div>
+
+                        <!-- Item 4 -->
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="d-flex flex-column flex-md-row justify-content-between mb-2">
+                                <div>
+                                    <h4 class="fw-bold mb-0">Líder de Proyecto</h4>
+                                    <h5 class="text-muted mb-0">MRS CONSULTORES S.A. DE CV</h5>
+                                </div>
+                                <div class="mt-2 mt-md-0">
+                                    <span class="badge-period">16/01/2007 - 15/10/2007</span>
+                                </div>
+                            </div>
+                            <ul class="text-muted small">
+								<li>Responsable de creación y diseño del Sistema de Gestión y captura para la cobranza
+								a carteras vencidas</li>
+								<li>Responsable de Diseño de Base de Datos para la explotación de Información.</li>
+								<li>Responsable de minería de datos para reportes solicitados de fiscal.</li>
+								<li>Responsable de procesos automáticos en Bash Shell</li>
+								<li>Responsable del monitoreo de gestiones</li>
+								<li>Tecnologías: ASP.NET,C#, Sql server 2000, Oracle ,PLSQL</li>
+															</ul>
+                        </div>
+
+                         <!-- Item 5 -->
+                         <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="d-flex flex-column flex-md-row justify-content-between mb-2">
+                                <div>
+                                    <h4 class="fw-bold mb-0">Programador Analista</h4>
+                                    <h5 class="text-muted mb-0">CANAMEX</h5>
+                                </div>
+                                <div class="mt-2 mt-md-0">
+                                    <span class="badge-period">15/03/2006 - 18/10/2006</span>
+                                </div>
+                            </div>
+                            <ul class="text-muted small">
+								<li>Responsable de actualización, adaptación y traducción de un Sistema desarrollado en
+								Brasil para el uso de las distintas plantas que tiene la empresa en la república mexicana y
+								Diseño de Pagina Web.</li>
+								<li>Responsable de reportes especializados para las plantas de México.</li>
+								<li>Responsable de Mantenimiento de Base de datos para consulta de material de proveedores.</li>
+								<li>Tecnologías: ASP.NET,C#, Sql server, Oracle</li>
+                            </ul>
+                        </div>
+
+                        <!-- Item 6 -->
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="d-flex flex-column flex-md-row justify-content-between mb-2">
+                                <div>
+                                    <h4 class="fw-bold mb-0">Líder de Proyecto</h4>
+                                    <h5 class="text-muted mb-0">Transportes Especializados BISSA</h5>
+                                </div>
+                                <div class="mt-2 mt-md-0">
+                                    <span class="badge-period">12/06/2005 - 10/03/2006</span>
+                                </div>
+                            </div>
+                            <ul class="text-muted small">
+                                 <li>Responsable de creación y organización de módulos a sistema que controla el flujo de
+									dinero de la empresa.</li>
+									 <li>A cargo de la Administrador de base de datos.</li>
+									 <li>A cargo del diseño de reportes para consulta de clientes Bancarios.</li>
+									 <li>Análisis de flujo de procesos de calidad de efectivo.</li>
+									 <li>Análisis de RPG obsoleto para la empresa y propuesta de nuevo RPG dedicado al giro
+									empresarial.</li>
+									 <li>Tecnologías: ASP.NET,C sharp. Sql server 2000, Oracle 9i,PLSQL,HP-UX,Batch Shell</li>
+                            </ul>
+                        </div>
+						
+						
+						
+						
+					  <!-- Item 7 -->
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="d-flex flex-column flex-md-row justify-content-between mb-2">
+                                <div>
+                                    <h4 class="fw-bold mb-0">Programador Analista</h4>
+                                    <h5 class="text-muted mb-0">Consultoría Supervisión Técnica y Operación de Sistemas</h5>
+                                </div>
+                                <div class="mt-2 mt-md-0">
+                                    <span class="badge-period">01/06/2004 - 05/04/2005</span>
+                                </div>
+                            </div>
+                            <ul class="text-muted small">
+                               <li>Creación de módulos en lenguajes orientados a objetos.</li>
+								 <li>Análisis de Proyectos Web.</li>
+								 <li>Análisis de Diseño de estadísticas.</li>
+								 <li>Creación de portales de consulta.</li>
+								 <li>Generación de procesos automáticos</li>
+								 <li>Diseño de front para clientes de almacén.</li>
+								 <li>Diseño de bases de datos para proyectos según modulo asignado.</li>
+								 <li>Tecnologías: ASP.NET,C sharp. Sql server 2000, Oracle 10G,PLSQL,PHP,Visual
+								Foxpro,Delphi,Visual Basic 6</li>
+                            </ul>
+                        </div>
+						
+					  <!-- Item 8 -->
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="d-flex flex-column flex-md-row justify-content-between mb-2">
+                                <div>
+                                    <h4 class="fw-bold mb-0">Auxiliar de Sistemas</h4>
+                                    <h5 class="text-muted mb-0">AAACESA (Agentes Aduanales Asociados para el Com. Exterior)</h5>
+                                </div>
+                                <div class="mt-2 mt-md-0">
+                                    <span class="badge-period">17/03/2003 - 31/05/2004</span>
+                                </div>
+                            </div>
+                            <ul class="text-muted small">
+                           <li>Apoyo referente a radiofrecuencia uso de tecnología orientada a Servidores Tecnología
+							inalámbrica</li>
+							<li>Backups de Base de Datos en AS400</li>
+							<li>Administración de Usuarios del Active Directory.</li>
+							<li>Apoyo a la administración de usuarios de correo electrónico</li>
+							<li>Soporte técnico a aduana</li>
+							<li>Analista en los procesos de registro aduanales.</li>
+                            </ul>
+                        </div>	
+						
+						
+						
+						
+						
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-white text-center py-4 border-top">
+        <div class="container text-muted">
+            <p class="mb-0">© 2025 Cesar Moreno Perez. CV Digital.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Script de Animación -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Seleccionar todas las barras de progreso
+            const progressBars = document.querySelectorAll('.progress-bar');
+            
+            // Retardo para iniciar la animación después de que cargue la página
+            setTimeout(() => {
+                progressBars.forEach(bar => {
+                    const width = bar.getAttribute('data-width');
+                    bar.style.width = width + '%';
+                });
+            }, 300);
+        });
+    </script>
+</body>
+</html>
