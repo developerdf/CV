@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -22,20 +22,24 @@
             color: #334155;
         }
 
-        /* Hero Section */
+        /* Hero Section - MODIFICADO: MÁS COMPACTO Y FIJO */
         .hero-section {
             background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
             color: white;
-            padding: 4rem 0;
-            position: relative;
+            padding: 1.5rem 0; /* Reducido de 4rem a 1.5rem */
+            position: sticky; 
+            top: 0;
+            z-index: 0;
+            width: 100%;
             overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); /* Sombra sutil para separar del contenido */
         }
 
         .hero-bg-icon {
             position: absolute;
             top: -20px;
             right: 5%;
-            font-size: 20rem;
+            font-size: 15rem; /* Reducido de 20rem */
             opacity: 0.05;
             color: white;
             transform: rotate(-15deg);
@@ -44,8 +48,8 @@
 
         .profile-container {
             position: relative;
-            width: 180px;
-            height: 180px;
+            width: 130px; /* Reducido de 180px */
+            height: 130px; /* Reducido de 180px */
             margin: 0 auto;
         }
 
@@ -54,8 +58,8 @@
             height: 100%;
             object-fit: cover;
             border-radius: 50%;
-            border: 4px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 15px -5px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease;
         }
 
@@ -65,12 +69,12 @@
 
         .status-dot {
             position: absolute;
-            bottom: 15px;
-            right: 15px;
-            width: 20px;
-            height: 20px;
+            bottom: 10px;
+            right: 10px;
+            width: 16px; /* Reducido */
+            height: 16px; /* Reducido */
             background-color: #22c55e;
-            border: 3px solid #1e293b;
+            border: 2px solid #1e293b;
             border-radius: 50%;
         }
 
@@ -79,15 +83,15 @@
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 50px;
-            padding: 0.5rem 1rem;
+            padding: 0.35rem 0.85rem; /* Padding reducido */
             color: #e2e8f0;
             text-decoration: none;
             transition: all 0.3s ease;
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
-            font-size: 0.9rem;
-            margin-bottom: 0.5rem;
+            gap: 0.4rem;
+            font-size: 0.8rem; /* Fuente reducida */
+            margin-bottom: 0.35rem;
         }
 
         .contact-pill:hover {
@@ -200,6 +204,7 @@
                 background: #1e293b !important; 
                 -webkit-print-color-adjust: exact; 
                 padding: 2rem 0;
+                position: relative !important; /* Reset position for print */
             }
             .hero-bg-icon { display: none; }
             body { background-color: white; }
@@ -218,21 +223,25 @@
             <div class="row align-items-center text-center text-md-start">
                 
                 <!-- Foto -->
-                <div class="col-md-3 mb-4 mb-md-0">
+                <div class="col-md-2 mb-3 mb-md-0"> <!-- Cambiado de col-md-3 a col-md-2 para ajustar proporciones -->
                     <div class="profile-container">
+                        <!-- Nota: Asegúrate de que la ruta de la imagen sea correcta -->
                         <img src="imagen/cesar.jpg" 
-						 alt="Cesar Moreno Perez" 
-						 class="profile-img">
+                             onerror="this.src='https://via.placeholder.com/130x130?text=CMP'"
+                             alt="Cesar Moreno Perez" 
+                             class="profile-img">
                         <div class="status-dot" title="Disponible"></div>
                     </div>
                 </div>
 
                 <!-- Info -->
-                <div class="col-md-9">
-                    <h1 class="display-4 fw-bold mb-2">CESAR MORENO PEREZ</h1>
-                    <h2 class="h4 text-info mb-4"><i class="fas fa-terminal me-2"></i>Project Manager / Líder de Proyectos</h2>
+                <div class="col-md-10">
+                    <!-- Reducido tamaño de fuente del nombre (de display-4 a display-6) -->
+                    <h1 class="display-6 fw-bold mb-1">CESAR MORENO PEREZ</h1>
+                    <!-- Reducido tamaño de fuente del título (de h4 a h6) -->
+                    <h2 class="h6 text-info mb-3"><i class="fas fa-terminal me-2"></i>Project Manager / Líder de Proyectos</h2>
                     
-                    <div class="d-flex flex-wrap justify-content-center justify-content-md-start gap-3 mb-4">
+                    <div class="d-flex flex-wrap justify-content-center justify-content-md-start gap-2 mb-3">
                         <a href="mailto:consultordfsr@gmail.com" class="contact-pill">
                             <i class="fas fa-envelope"></i> consultordfsr@gmail.com
                         </a>
@@ -244,25 +253,25 @@
                         </span>
                     </div>
 
-					<div class="bg-white bg-opacity-10 p-3 rounded text-light border border-white border-opacity-10">
-						<p class="mb-0" style="font-size: 1.05rem; line-height: 1.6; text-align: justify;">
-							Cuento con amplia experiencia en la gestión y desarrollo de proyectos de TI, abarcando desde el
-							levantamiento de requerimientos hasta la entrega final. He desempeñado roles como Analista,
-							Programador, Administrador de Bases de Datos, Líder de Proyecto y Project Manager, gestionando tanto
-							incidentes como equipos de trabajo. Mi trayectoria abarca diversos sectores, incluyendo
-							Telecomunicaciones, Salud, Crédito y Cobranza, Gobierno y Bancario. Poseo sólidos conocimientos en
-							metodologías de gestión de proyecto y desarrollo de software como Waterfall, Scrum y Kanban,
-							adaptándome a las necesidades específicas de cada proyecto. Me enfoco en entregar soluciones de
-							alta calidad dentro de los plazos y presupuestos establecidos, fomentando un ambiente de trabajo
-							colaborativo y eficiente.
-						</p>
-					</div>
+                    <div class="bg-white bg-opacity-10 p-2 rounded text-light border border-white border-opacity-10">
+                        <p class="mb-0" style="font-size: 0.9rem; line-height: 1.4; text-align: justify;">
+                            Cuento con amplia experiencia en la gestión y desarrollo de proyectos de TI, abarcando desde el
+                            levantamiento de requerimientos hasta la entrega final. He desempeñado roles como Analista,
+                            Programador, Administrador de Bases de Datos, Líder de Proyecto y Project Manager, gestionando tanto
+                            incidentes como equipos de trabajo. Mi trayectoria abarca diversos sectores, incluyendo
+                            Telecomunicaciones, Salud, Crédito y Cobranza, Gobierno y Bancario. Poseo sólidos conocimientos en
+                            metodologías de gestión de proyecto y desarrollo de software como Waterfall, Scrum y Kanban,
+                            adaptándome a las necesidades específicas de cada proyecto. Me enfoco en entregar soluciones de
+                            alta calidad dentro de los plazos y presupuestos establecidos, fomentando un ambiente de trabajo
+                            colaborativo y eficiente.
+                        </p>
+                    </div>
 
             </div>
 
             <!-- Botón Imprimir (visible solo en pantalla) -->
-            <div class="position-absolute top-0 end-0 mt-3 me-3 d-none d-lg-block">
-                <button onclick="window.print()" class="btn btn-primary btn-print shadow-lg">
+            <div class="position-absolute top-0 end-0 mt-2 me-3 d-none d-lg-block">
+                <button onclick="window.print()" class="btn btn-sm btn-primary btn-print shadow-sm">
                     <i class="fas fa-download me-2"></i>Descargar PDF
                 </button>
             </div>
@@ -270,7 +279,8 @@
     </header>
 
     <!-- Main Content -->
-    <div class="container mt-n5 pb-5" style="margin-top: -30px; position: relative; z-index: 10;">
+    <!-- z-index: 10 asegura que este contenido pase POR ENCIMA del header fijo -->
+    <div class="container mt-n5 pb-5" style="margin-top: -20px; position: relative; z-index: 10;">
         <div class="row">
             
             <!-- Columna Izquierda (Skills) -->
@@ -321,8 +331,8 @@
                                     <div class="progress-bar" role="progressbar" data-width="75"></div>
                                 </div>
                             </div>
-							
-							 <div class="skill-item">
+                            
+                             <div class="skill-item">
                                 <div class="d-flex justify-content-between mb-1">
                                     <span class="fw-bold small">Bootstrap</span>
                                     <span class="small">65%</span>
@@ -331,8 +341,8 @@
                                     <div class="progress-bar" role="progressbar" data-width="70"></div>
                                 </div>
                             </div>
-							
-							 <div class="skill-item">
+                            
+                             <div class="skill-item">
                                 <div class="d-flex justify-content-between mb-1">
                                     <span class="fw-bold small">Shell Bash</span>
                                     <span class="small">85%</span>
@@ -341,8 +351,8 @@
                                     <div class="progress-bar" role="progressbar" data-width="75"></div>
                                 </div>
                             </div>
-							
-								 <div class="skill-item">
+                            
+                                 <div class="skill-item">
                                 <div class="d-flex justify-content-between mb-1">
                                     <span class="fw-bold small">4GL</span>
                                     <span class="small">85%</span>
@@ -351,8 +361,8 @@
                                     <div class="progress-bar" role="progressbar" data-width="60"></div>
                                 </div>
                             </div>
-							
-								 <div class="skill-item">
+                            
+                                 <div class="skill-item">
                                 <div class="d-flex justify-content-between mb-1">
                                     <span class="fw-bold small">SQR PeopleSoft</span>
                                     <span class="small">85%</span>
@@ -361,8 +371,8 @@
                                     <div class="progress-bar" role="progressbar" data-width="70"></div>
                                 </div>
                             </div>
-							
-								 <div class="skill-item">
+                            
+                                 <div class="skill-item">
                                 <div class="d-flex justify-content-between mb-1">
                                     <span class="fw-bold small">SSAS</span>
                                     <span class="small">85%</span>
@@ -371,8 +381,8 @@
                                     <div class="progress-bar" role="progressbar" data-width="75"></div>
                                 </div>
                             </div>
-							
-							 <div class="skill-item">
+                            
+                             <div class="skill-item">
                                 <div class="d-flex justify-content-between mb-1">
                                     <span class="fw-bold small">SSIS</span>
                                     <span class="small">85%</span>
@@ -381,8 +391,8 @@
                                     <div class="progress-bar" role="progressbar" data-width="70"></div>
                                 </div>
                             </div>
-							
-							  <div class="skill-item">
+                            
+                              <div class="skill-item">
                                 <div class="d-flex justify-content-between mb-1">
                                     <span class="fw-bold small">SSRS</span>
                                     <span class="small">85%</span>
@@ -391,8 +401,8 @@
                                     <div class="progress-bar" role="progressbar" data-width="80"></div>
                                 </div>
                             </div>
-							
-							  <div class="skill-item">
+                            
+                              <div class="skill-item">
                                 <div class="d-flex justify-content-between mb-1">
                                     <span class="fw-bold small">PowerShell</span>
                                     <span class="small">85%</span>
@@ -401,8 +411,8 @@
                                     <div class="progress-bar" role="progressbar" data-width="70"></div>
                                 </div>
                             </div>
-							
-							  <div class="skill-item">
+                            
+                              <div class="skill-item">
                                 <div class="d-flex justify-content-between mb-1">
                                     <span class="fw-bold small">Pro C</span>
                                     <span class="small">80%</span>
@@ -411,8 +421,8 @@
                                     <div class="progress-bar" role="progressbar" data-width="70"></div>
                                 </div>
                             </div>
-							
-							 <div class="skill-item">
+                            
+                             <div class="skill-item">
                                 <div class="d-flex justify-content-between mb-1">
                                     <span class="fw-bold small">ODI 12C</span>
                                     <span class="small">70%</span>
@@ -421,9 +431,31 @@
                                     <div class="progress-bar" role="progressbar" data-width="70"></div>
                                 </div>
                             </div>
-							
-							
-							
+                            
+                            
+                            
+                             <div class="skill-item">
+                                <div class="d-flex justify-content-between mb-1">
+                                    <span class="fw-bold small">UIPath</span>
+                                    <span class="small">60%</span>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" data-width="70"></div>
+                                </div>
+                            </div>
+                            
+                                 <div class="skill-item">
+                                <div class="d-flex justify-content-between mb-1">
+                                    <span class="fw-bold small">Pentaho</span>
+                                    <span class="small">70%</span>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" data-width="70"></div>
+                                </div>
+                            </div>
+                            
+                            
+                            
                         </div>
 
                         <div class="mb-4 pt-3 border-top">
@@ -446,9 +478,9 @@
                                     <div class="progress-bar bg-indigo" style="background-color: #6366f1;" role="progressbar" data-width="85"></div>
                                 </div>
                             </div>
-							
-							
-							  <div class="skill-item">
+                            
+                            
+                              <div class="skill-item">
                                 <div class="d-flex justify-content-between mb-1">
                                     <span class="fw-bold small">SQL Server</span>
                                     <span class="small">85%</span>
@@ -457,8 +489,8 @@
                                     <div class="progress-bar bg-indigo" style="background-color: #6366f1;" role="progressbar" data-width="85"></div>
                                 </div>
                             </div>
-							
-							 <div class="skill-item">
+                            
+                             <div class="skill-item">
                                 <div class="d-flex justify-content-between mb-1">
                                     <span class="fw-bold small">INFORMIX</span>
                                     <span class="small">80%</span>
@@ -467,8 +499,8 @@
                                     <div class="progress-bar bg-indigo" style="background-color: #6366f1;" role="progressbar" data-width="85"></div>
                                 </div>
                             </div>
-							
-									 <div class="skill-item">
+                            
+                                     <div class="skill-item">
                                 <div class="d-flex justify-content-between mb-1">
                                     <span class="fw-bold small">PLSQL ORACLE</span>
                                     <span class="small">85%</span>
@@ -477,8 +509,8 @@
                                     <div class="progress-bar bg-indigo" style="background-color: #6366f1;" role="progressbar" data-width="85"></div>
                                 </div>
                             </div>
-							
-							 <div class="skill-item">
+                            
+                             <div class="skill-item">
                                 <div class="d-flex justify-content-between mb-1">
                                     <span class="fw-bold small">MYSQL</span>
                                     <span class="small">60%</span>
@@ -487,8 +519,8 @@
                                     <div class="progress-bar bg-indigo" style="background-color: #6366f1;" role="progressbar" data-width="85"></div>
                                 </div>
                             </div>
-							
-							
+                            
+                            
                         </div>
 
                         <div class="pt-3 border-top">
@@ -583,42 +615,26 @@
                                 <div class="mt-2 mt-md-0">
                                     <span class="badge-period">17/10/2012 - Actual</span>
                                 </div>
-                            </div>
-                            <p class="fst-italic text-secondary border-start border-4 border-light ps-3 mb-3">
-                                Responsable de la Gestión Integral de Proyectos y Procesos para Cumplimiento de Estándares CMMI Nivel 3.
-                            </p>
+                            </div>                         
                             <ul class="text-muted small">
-                                <li class="mb-1">Responsable de la Gestión Integral de Proyectos y Procesos para Cumplimiento de Estándares CMMI Nivel 3.</li>
-                                <li class="mb-1">Implementación y gestión de procesos del Application Lifecycle Management (ALM),asegurando trazabilidad mediante matrices .</li>
-                                <li class="mb-1">Gestión y administración de herramientas especializadas para el soporte de proyectos y operación:
-                                                  Monitor, Harvest, Jira, PPMC, Quality Center, Eroom, y ServiceNow.</li>
-                                <li>Desarrollo y optimización de procesos de inteligencia de negocios mediante herramientas
-								como SSRS, SSIS, y SQR para PeopleSoft.</li>
-								<li>Uso de herramientas colaborativas y de control de versiones, como Bitbucket,
-								GitHub,Subversion y DImensions para garantizar la calidad y la documentación en los
-								entregables.</li>
-								<li>Uso de herramientas colaborativas y de control de versiones, como Bitbucket, GitHub,
-								Subversion y DImensions para garantizar la calidad y la documentación en los entregables </li>
-								<li>Gestión de sistemas legados del SAT como Administración y soporte de aplicaciones
-								institucionales (SICOSEM, SICA, Rayos Gamma, etc.), enfocadas en procesos tributarios,
-								con atención a incidencias, mejoras evolutivas y continuidad operativa.</li>
-								<li>Coordinación de actividades clave, desde la generación de estimaciones y planes de
-								trabajo hasta la asignación de recursos necesarios para la atención de requerimientos.</li>
-								<li>Elaboración y gestión de documentación técnica y funcional para aprobación de
-								requerimientos (PPMC, Diseño Funcional, Técnico, SMC, etc.).</li>
-								<li>Planificación, ejecución y supervisión de pruebas unitarias, garantizando la calidad en los
-								entregables.</li>
-								<li>Estimación precisa de tiempos y esfuerzos requeridos para proyectos, asegurando
-								cumplimiento de plazos y optimización de recursos.</li>
-								<li>Gestión de incidencias operativas, proporcionando soluciones oportunas para minimizar
-								impactos.</li>
-								<li>Garantía del cumplimiento de acuerdos de nivel de servicio (SLA) en los servicios ofrecidos.</li>
-								<li>Capacitación y entrenamiento al personal para resolver incidencias, fomentando la
-								autonomía y mejora continua en el equipo.</li>
-								<li>Gestión de proyectos End-to-end management en sistemas Currency: Coordinación y
-								seguimiento de iniciativas tecnológicas para plataformas clave del core bancario,
-								incluyendo Cajeros, Ellave, Sucursales, Estados, Cobranza Lite y BackOffice. Enfoque en
-								integración, mejora continua y cumplimiento de objetivos operativos.</li>
+                          <li>Responsable de la Gestión Integral de Proyectos y Procesos para Cumplimiento de Estándares CMMI Nivel 3 </li>
+							<li>Implementación y gestión de procesos del Application Lifecycle Management (ALM), asegurando trazabilidad mediante matrices y cumplimiento de estándares CMMI Nivel 3.</li>
+							<li>Gestión y administración de herramientas especializadas para el soporte de proyectos y operación:
+										Monitor, Harvest, Jira, PPMC, Quality Center, Eroom, y ServiceNow.</li>
+							<li>Desarrollo y optimización de procesos de inteligencia de negocios mediante herramientas como SSRS, SSIS, y SQR para PeopleSoft.</li>
+							<li>Uso de herramientas colaborativas y de control de versiones, como Bitbucket, GitHub,Subversion y DImensions para garantizar la calidad y la documentación en los entregables.</li>
+							<li>Uso de herramientas colaborativas y de control de versiones, como Bitbucket, GitHub, Subversion y DImensions para garantizar la calidad y la documentación en los entregables.</li>
+							<li>Gestión de sistemas legados del SAT como Administración y soporte de aplicaciones institucionales (SICOSEM, SICA, Rayos Gamma, etc.), enfocadas en procesos tributarios, con atención a incidencias, mejoras evolutivas y continuidad operativa.</li>
+							<li>Coordinación de actividades clave, desde la generación de estimaciones y planes de trabajo hasta la asignación de recursos necesarios para la atención de requerimientos.</li>
+							<li>Elaboración y gestión de documentación técnica y funcional para aprobación de requerimientos (PPMC, Diseño Funcional, Técnico, SMC, etc.)</li>
+							<li>Planificación, ejecución y supervisión de pruebas unitarias, garantizando la calidad en los entregables.</li>
+							<li>Estimación de tiempos y esfuerzos requeridos para proyectos, asegurando cumplimiento de plazos y optimización de recursos.</li>
+							<li>Atencion y gestion de incidencias en core Bancario Scotiacred,Estados de cuenta, Buro de Credito,etc</li>
+							<li>Procesamiento masivo de archivos (Excel, Word, PDF) con RPA </li>
+							<li>Ingreso automático de información en sistemas ERP  con automatizacion robotica RPA</li>
+							<li>Integracion de servicios REST y SOAP APIs. con el RPA UIPath </li>
+							<li>Gestión de proyectos End-to-end management en sistemas Currency: Coordinación y seguimiento de iniciativas tecnológicas para plataformas clave del core bancario, incluyendo Cajeros, Ellave, Sucursales, Estados, Cobranza Lite y BackOffice. Enfoque en integración, mejora continua y cumplimiento de objetivos operativos.</li>
+
                             </ul>
                         </div>
 
