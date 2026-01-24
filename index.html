@@ -1,4 +1,4 @@
-  <!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -271,9 +271,22 @@
 
             <!-- Botón Imprimir (visible solo en pantalla) -->
             <div class="position-absolute top-0 end-0 mt-2 me-3 d-none d-lg-block">
-                <button onclick="window.print()" class="btn btn-sm btn-primary btn-print shadow-sm">
-                    <i class="fas fa-download me-2"></i>Descargar PDF
-                </button>
+						<button class="btn btn-sm btn-primary btn-print shadow-sm"
+						onclick="forzarDescarga()">
+						<i class="fas fa-download me-2"></i>Descargar PDF
+						</button>
+
+
+						<script>
+						function forzarDescarga() {
+						const link = document.createElement('a');
+						link.href = 'doc/CV_CesarMorenoPerez.pdf';
+						link.download = 'CV_CesarMorenoPerez.pdf';
+						document.body.appendChild(link);
+						link.click();
+						document.body.removeChild(link);
+						}
+						</script>
             </div>
         </div>
     </header>
@@ -584,6 +597,7 @@
                         <h3 class="section-title"><i class="fas fa-certificate text-info"></i> Certificaciones</h3>
                         <ul class="list-unstyled mb-0">
                             <li class="mb-2"><i class="fas fa-check-circle text-info me-2"></i>Scrum Foundation</li>
+                            <li class="mb-2"><i class="fas fa-check-circle text-info me-2"></i>Scrum Master</li>
                             <li class="mb-2"><i class="fas fa-check-circle text-info me-2"></i>Lean Six Sigma White Belt</li>
                             <li><i class="fas fa-check-circle text-info me-2"></i>Business Intelligence Foundation</li>
                         </ul>
