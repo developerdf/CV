@@ -10,7 +10,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     
     <style>
-        :root {
+         :root {
             --primary-blue: #2563eb;
             --dark-bg: #0f172a;
             --card-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
@@ -22,24 +22,35 @@
             color: #334155;
         }
 
-        /* Hero Section - MODIFICADO: MÁS COMPACTO Y FIJO */
+        /* Hero Section */
         .hero-section {
             background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
             color: white;
-            padding: 1.5rem 0; /* Reducido de 4rem a 1.5rem */
+            padding: 1.5rem 0;
             position: sticky; 
             top: 0;
             z-index: 0;
             width: 100%;
             overflow: hidden;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); /* Sombra sutil para separar del contenido */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+		
+       /* Canvas de Nodos */
+        #node-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
         }
 
         .hero-bg-icon {
             position: absolute;
             top: -20px;
             right: 5%;
-            font-size: 15rem; /* Reducido de 20rem */
+            font-size: 15rem;
             opacity: 0.05;
             color: white;
             transform: rotate(-15deg);
@@ -48,8 +59,8 @@
 
         .profile-container {
             position: relative;
-            width: 130px; /* Reducido de 180px */
-            height: 130px; /* Reducido de 180px */
+            width: 130px;
+            height: 130px;
             margin: 0 auto;
         }
 
@@ -71,8 +82,8 @@
             position: absolute;
             bottom: 10px;
             right: 10px;
-            width: 16px; /* Reducido */
-            height: 16px; /* Reducido */
+            width: 16px;
+            height: 16px;
             background-color: #22c55e;
             border: 2px solid #1e293b;
             border-radius: 50%;
@@ -83,14 +94,14 @@
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 50px;
-            padding: 0.35rem 0.85rem; /* Padding reducido */
+            padding: 0.35rem 0.85rem;
             color: #e2e8f0;
             text-decoration: none;
             transition: all 0.3s ease;
             display: inline-flex;
             align-items: center;
             gap: 0.4rem;
-            font-size: 0.8rem; /* Fuente reducida */
+            font-size: 0.8rem;
             margin-bottom: 0.35rem;
         }
 
@@ -134,22 +145,37 @@
             gap: 0.5rem;
         }
 
-        /* Skills */
+        /* Skills Progress Bars with Gradients (Dark to Light) */
         .skill-item {
             margin-bottom: 1rem;
         }
 
         .progress {
-            height: 0.6rem;
-            background-color: #e2e8f0;
+            height: 0.75rem;
+            background-color: #f1f5f9;
             border-radius: 1rem;
             overflow: hidden;
+            box-shadow: inset 0 1px 2px rgba(0,0,0,0.05);
         }
 
         .progress-bar {
-            background-color: var(--primary-blue);
-            width: 0; /* Starts at 0 for animation */
+            width: 0; 
+            height: 100%;
             transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 1rem;
+        }
+
+        /* Degradados: Color fuerte a la IZQUIERDA, suave a la DERECHA */
+        .gradient-blue {
+            background: linear-gradient(90deg, #1d4ed8 0%, #bfdbfe 100%) !important;
+        }
+
+        .gradient-indigo {
+            background: linear-gradient(90deg, #4338ca 0%, #e0e7ff 100%) !important;
+        }
+
+        .gradient-green {
+            background: linear-gradient(90deg, #047857 0%, #d1fae5 100%) !important;
         }
 
         /* Experience Timeline */
@@ -196,6 +222,8 @@
             margin: 0.25rem;
             border: 1px solid #e9d5ff;
         }
+		
+
 
         /* Print Styles */
         @media print {
@@ -204,20 +232,30 @@
                 background: #1e293b !important; 
                 -webkit-print-color-adjust: exact; 
                 padding: 2rem 0;
-                position: relative !important; /* Reset position for print */
+                position: relative !important;
             }
             .hero-bg-icon { display: none; }
             body { background-color: white; }
             .custom-card { box-shadow: none; border: 1px solid #ddd; break-inside: avoid; }
             .progress-bar { -webkit-print-color-adjust: exact; }
             .contact-pill { color: #333; border: 1px solid #ccc; background: transparent; }
+			 
         }
+		
+		
+        @media print {
+            .hero-section { position: relative !important; min-height: auto !important; z-index: 1; }
+            .main-content-wrapper { margin-top: 0 !important; box-shadow: none !important; }
+            #node-canvas, .btn-print { display: none !important; }
+        }
+ 
     </style>
 </head>
 <body>
 
     <!-- Header / Hero -->
-    <header class="hero-section">
+    <header class="hero-section"> 
+	     <canvas id="node-canvas"></canvas>
         <i class="fas fa-code hero-bg-icon"></i>
         <div class="container position-relative z-2">
             <div class="row align-items-center text-center text-md-start">
@@ -255,23 +293,19 @@
 
                     <div class="bg-white bg-opacity-10 p-2 rounded text-light border border-white border-opacity-10">
                         <p class="mb-0" style="font-size: 0.9rem; line-height: 1.4; text-align: justify;">
-                            Cuento con amplia experiencia en la gestión y desarrollo de proyectos de TI, abarcando desde el
-                            levantamiento de requerimientos hasta la entrega final. He desempeñado roles como Analista,
-                            Programador, Administrador de Bases de Datos, Líder de Proyecto y Project Manager, gestionando tanto
-                            incidentes como equipos de trabajo. Mi trayectoria abarca diversos sectores, incluyendo
-                            Telecomunicaciones, Salud, Crédito y Cobranza, Gobierno y Bancario. Poseo sólidos conocimientos en
-                            metodologías de gestión de proyecto y desarrollo de software como Waterfall, Scrum y Kanban,
-                            adaptándome a las necesidades específicas de cada proyecto. Me enfoco en entregar soluciones de
-                            alta calidad dentro de los plazos y presupuestos establecidos, fomentando un ambiente de trabajo
-                            colaborativo y eficiente.
+                          
+							Especialista en gestión y desarrollo de proyectos de TI, con experiencia en roles de Analista, Programador, Administrador de 
+							Bases de Datos y Project Manager. He trabajado en sectores como Telecomunicaciones, Salud, Gobierno y Banca, aplicando metodologías 
+							Waterfall, Scrum y Kanban. Me enfoco en entregar soluciones de calidad dentro de plazos y presupuestos, liderando equipos de manera 
+							eficiente y colaborativa.
                         </p>
                     </div>
 
             </div>
 
             <!-- Botón Imprimir (visible solo en pantalla) -->
-            <div class="position-absolute top-0 end-0 mt-2 me-3 d-none d-lg-block">
-						<button class="btn btn-sm btn-primary btn-print shadow-sm"
+						<div class="position-fixed top-0 end-0 mt-2 me-3 z-3">
+						<button class="btn btn-sm btn-primary shadow-sm"
 						onclick="forzarDescarga()">
 						<i class="fas fa-download me-2"></i>Descargar PDF
 						</button>
@@ -314,7 +348,7 @@
                                     <span class="small">90%</span>
                                 </div>
                                 <div class="progress">
-                                    <div class="progress-bar" role="progressbar" data-width="90"></div>
+                                    <div class="progress-bar gradient-blue" role="progressbar" data-width="90"></div>
                                 </div>
                             </div>
                             <div class="skill-item">
@@ -323,7 +357,7 @@
                                     <span class="small">85%</span>
                                 </div>
                                 <div class="progress">
-                                    <div class="progress-bar" role="progressbar" data-width="85"></div>
+                                    <div class="progress-bar gradient-blue" role="progressbar" data-width="85"></div>
                                 </div>
                             </div>
                             <div class="skill-item">
@@ -332,7 +366,7 @@
                                     <span class="small">80%</span>
                                 </div>
                                 <div class="progress">
-                                    <div class="progress-bar" role="progressbar" data-width="80"></div>
+                                    <div class="progress-bar gradient-blue" role="progressbar" data-width="80"></div>
                                 </div>
                             </div>
                             <div class="skill-item">
@@ -341,7 +375,7 @@
                                     <span class="small">75%</span>
                                 </div>
                                 <div class="progress">
-                                    <div class="progress-bar" role="progressbar" data-width="75"></div>
+                                    <div class="progress-bar gradient-blue" role="progressbar" data-width="75"></div>
                                 </div>
                             </div>
                             
@@ -351,7 +385,7 @@
                                     <span class="small">65%</span>
                                 </div>
                                 <div class="progress">
-                                    <div class="progress-bar" role="progressbar" data-width="70"></div>
+                                    <div class="progress-bar gradient-blue" role="progressbar" data-width="70"></div>
                                 </div>
                             </div>
                             
@@ -361,7 +395,7 @@
                                     <span class="small">85%</span>
                                 </div>
                                 <div class="progress">
-                                    <div class="progress-bar" role="progressbar" data-width="75"></div>
+                                    <div class="progress-bar gradient-blue" role="progressbar" data-width="75"></div>
                                 </div>
                             </div>
                             
@@ -371,7 +405,7 @@
                                     <span class="small">85%</span>
                                 </div>
                                 <div class="progress">
-                                    <div class="progress-bar" role="progressbar" data-width="60"></div>
+                                    <div class="progress-bar gradient-blue" role="progressbar" data-width="60"></div>
                                 </div>
                             </div>
                             
@@ -381,7 +415,7 @@
                                     <span class="small">85%</span>
                                 </div>
                                 <div class="progress">
-                                    <div class="progress-bar" role="progressbar" data-width="70"></div>
+                                    <div class="progress-bar gradient-blue" role="progressbar" data-width="70"></div>
                                 </div>
                             </div>
                             
@@ -391,7 +425,7 @@
                                     <span class="small">85%</span>
                                 </div>
                                 <div class="progress">
-                                    <div class="progress-bar" role="progressbar" data-width="75"></div>
+                                    <div class="progress-bar gradient-blue" role="progressbar" data-width="75"></div>
                                 </div>
                             </div>
                             
@@ -401,7 +435,7 @@
                                     <span class="small">85%</span>
                                 </div>
                                 <div class="progress">
-                                    <div class="progress-bar" role="progressbar" data-width="70"></div>
+                                    <div class="progress-bar gradient-blue" role="progressbar" data-width="70"></div>
                                 </div>
                             </div>
                             
@@ -411,7 +445,7 @@
                                     <span class="small">85%</span>
                                 </div>
                                 <div class="progress">
-                                    <div class="progress-bar" role="progressbar" data-width="80"></div>
+                                    <div class="progress-bar gradient-blue" role="progressbar" data-width="80"></div>
                                 </div>
                             </div>
                             
@@ -421,7 +455,7 @@
                                     <span class="small">85%</span>
                                 </div>
                                 <div class="progress">
-                                    <div class="progress-bar" role="progressbar" data-width="70"></div>
+                                    <div class="progress-bar gradient-blue" role="progressbar" data-width="70"></div>
                                 </div>
                             </div>
                             
@@ -431,7 +465,7 @@
                                     <span class="small">80%</span>
                                 </div>
                                 <div class="progress">
-                                    <div class="progress-bar" role="progressbar" data-width="70"></div>
+                                    <div class="progress-bar gradient-blue" role="progressbar" data-width="70"></div>
                                 </div>
                             </div>
                             
@@ -441,7 +475,7 @@
                                     <span class="small">70%</span>
                                 </div>
                                 <div class="progress">
-                                    <div class="progress-bar" role="progressbar" data-width="70"></div>
+                                    <div class="progress-bar gradient-blue" role="progressbar" data-width="70"></div>
                                 </div>
                             </div>
                             
@@ -453,7 +487,7 @@
                                     <span class="small">60%</span>
                                 </div>
                                 <div class="progress">
-                                    <div class="progress-bar" role="progressbar" data-width="70"></div>
+                                    <div class="progress-bar gradient-blue" role="progressbar" data-width="70"></div>
                                 </div>
                             </div>
                             
@@ -463,7 +497,7 @@
                                     <span class="small">70%</span>
                                 </div>
                                 <div class="progress">
-                                    <div class="progress-bar" role="progressbar" data-width="70"></div>
+                                    <div class="progress-bar gradient-blue" role="progressbar" data-width="70"></div>
                                 </div>
                             </div>
                             
@@ -479,7 +513,7 @@
                                     <span class="small">90%</span>
                                 </div>
                                 <div class="progress">
-                                    <div class="progress-bar bg-indigo" style="background-color: #6366f1;" role="progressbar" data-width="90"></div>
+                                    <div class="progress-bar gradient-indigo" style="background-color: #6366f1;" role="progressbar" data-width="90"></div>
                                 </div>
                             </div>
                             <div class="skill-item">
@@ -488,7 +522,7 @@
                                     <span class="small">80%</span>
                                 </div>
                                 <div class="progress">
-                                    <div class="progress-bar bg-indigo" style="background-color: #6366f1;" role="progressbar" data-width="85"></div>
+                                    <div class="progress-bar gradient-indigo" style="background-color: #6366f1;" role="progressbar" data-width="85"></div>
                                 </div>
                             </div>
                             
@@ -499,7 +533,7 @@
                                     <span class="small">85%</span>
                                 </div>
                                 <div class="progress">
-                                    <div class="progress-bar bg-indigo" style="background-color: #6366f1;" role="progressbar" data-width="85"></div>
+                                    <div class="progress-bar gradient-indigo" style="background-color: #6366f1;" role="progressbar" data-width="85"></div>
                                 </div>
                             </div>
                             
@@ -509,7 +543,7 @@
                                     <span class="small">80%</span>
                                 </div>
                                 <div class="progress">
-                                    <div class="progress-bar bg-indigo" style="background-color: #6366f1;" role="progressbar" data-width="85"></div>
+                                    <div class="progress-bar gradient-indigo" style="background-color: #6366f1;" role="progressbar" data-width="85"></div>
                                 </div>
                             </div>
                             
@@ -519,7 +553,7 @@
                                     <span class="small">85%</span>
                                 </div>
                                 <div class="progress">
-                                    <div class="progress-bar bg-indigo" style="background-color: #6366f1;" role="progressbar" data-width="85"></div>
+                                    <div class="progress-bar gradient-indigo" style="background-color: #6366f1;" role="progressbar" data-width="85"></div>
                                 </div>
                             </div>
                             
@@ -529,7 +563,7 @@
                                     <span class="small">60%</span>
                                 </div>
                                 <div class="progress">
-                                    <div class="progress-bar bg-indigo" style="background-color: #6366f1;" role="progressbar" data-width="85"></div>
+                                    <div class="progress-bar gradient-indigo" style="background-color: #6366f1;" role="progressbar" data-width="85"></div>
                                 </div>
                             </div>
                             
@@ -544,7 +578,7 @@
                                     <span class="small">90%</span>
                                 </div>
                                 <div class="progress">
-                                    <div class="progress-bar bg-success" role="progressbar" data-width="90"></div>
+                                    <div class="progress-bar gradient-green" role="progressbar" data-width="90"></div>
                                 </div>
                             </div>
                             <div class="skill-item">
@@ -553,7 +587,7 @@
                                     <span class="small">85%</span>
                                 </div>
                                 <div class="progress">
-                                    <div class="progress-bar bg-success" role="progressbar" data-width="85"></div>
+                                    <div class="progress-bar gradient-green" role="progressbar" data-width="85"></div>
                                 </div>
                             </div>
                         </div>
@@ -873,6 +907,69 @@
                     bar.style.width = width + '%';
                 });
             }, 300);
+        });
+    </script>
+	    <script>
+        function forzarDescarga() {
+            const link = document.createElement('a');
+            link.href = 'doc/CV_CesarMorenoPerez.pdf';
+            link.download = 'CV_CesarMorenoPerez.pdf';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        // Animación de Nodos
+        const canvas = document.getElementById('node-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function initNodes() {
+            canvas.width = window.innerWidth;
+            canvas.height = document.querySelector('.hero-section').offsetHeight;
+            particles = Array.from({length: 45}, () => ({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                vx: (Math.random() - 0.5) * 0.4,
+                vy: (Math.random() - 0.5) * 0.4
+            }));
+        }
+
+        function animateNodes() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.x += p.vx; p.y += p.vy;
+                if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+                if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+                
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, 2, 0, Math.PI*2);
+                ctx.fillStyle = "rgba(255,255,255,0.25)";
+                ctx.fill();
+
+                particles.forEach(p2 => {
+                    const d = Math.hypot(p.x - p2.x, p.y - p2.y);
+                    if (d < 110) {
+                        ctx.beginPath();
+                        ctx.strokeStyle = `rgba(255,255,255,${0.15 - d/800})`;
+                        ctx.moveTo(p.x, p.y); ctx.lineTo(p2.x, p2.y);
+                        ctx.stroke();
+                    }
+                });
+            });
+            requestAnimationFrame(animateNodes);
+        }
+
+        window.addEventListener('resize', initNodes);
+        document.addEventListener("DOMContentLoaded", () => {
+            initNodes();
+            animateNodes();
+            // Animación de barras
+            setTimeout(() => {
+                document.querySelectorAll('.progress-bar').forEach(bar => {
+                    bar.style.width = bar.getAttribute('data-width') + '%';
+                });
+            }, 500);
         });
     </script>
 </body>
